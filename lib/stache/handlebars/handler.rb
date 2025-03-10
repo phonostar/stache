@@ -63,7 +63,8 @@ module Stache
       end
 
       # In Rails 3.1+, #call takes the place of #compile
-      def self.call(template)
+      # Rails 7 has 2 mandatory arguments in call
+      def self.call(template, stub)
         new.compile(template)
       end
 

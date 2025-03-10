@@ -26,7 +26,8 @@ module Stache
         virtual_path      = template.virtual_path.to_s
 
         # Caching key
-        template_id = "#{template.identifier.to_s}#{template.updated_at.to_i}"
+        # FIXME rails 7 does not have template updated_at attribute
+        template_id = "#{template.identifier.to_s}"
 
         # Return a string that will be eval'd in the context of the ActionView, ugly, but it works.
         <<-MUSTACHE
@@ -82,7 +83,8 @@ module Stache
       end
 
       # In Rails 3.1+, #call takes the place of #compile
-      def self.call(template)
+      # Rails 7 has 2 mandatory arguments
+      def self.call(template, stub)
         new.compile(template)
       end
 

@@ -27,7 +27,7 @@ module Stache
         # do it here instead of inside the partial.
         #
         current_dir   = Stache.template_base_path.join(path.split("/")[0..-2].join("/"))
-        lookup_context.view_paths << current_dir unless lookup_context.view_paths.include?(current_dir)
+        lookup_context.append_view_paths [current_dir] unless lookup_context.view_paths.include?(current_dir)
       end
 
       # Redefine where Stache::View templates locate their partials
